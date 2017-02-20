@@ -45,7 +45,9 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
                 if (ctx.hasActiveCatalystInstance()) {
                     ctx
                     .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                    .emit("orientationDidChange", params)
+                    .emit("orientationDidChange", params);
+                    ctx
+                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                     .emit("specificOrientationDidChange", params);
                 }
             }
@@ -131,7 +133,7 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
         return constants;
     }
 
-    private String getSpecificOrientationString(int orientationValue) {
+    private String getSpecificOrientationString(int orientation) {
       if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
           return "LANDSCAPE";
       } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -185,5 +187,6 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
         }
         catch (java.lang.IllegalArgumentException e) {
             FLog.e(ReactConstants.TAG, "receiver already unregistered", e);
-        }}
+        }
     }
+}
