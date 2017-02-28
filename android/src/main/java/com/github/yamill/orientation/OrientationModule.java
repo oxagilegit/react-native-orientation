@@ -184,7 +184,7 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
     }
 
     private String getSpecificOrientationString(int orientationValue) {
-        if (orientationValue < 0) return ORIENTATION_UNKNOWN;
+        if (orientationValue < 0) return PORTRAIT; // maybe need ORIENTATION_UNKNOWN
         final int index = (int) ((float) orientationValue / 90.0 + 0.5) % 4;
         return mOrientations[index];
     }
