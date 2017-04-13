@@ -46,6 +46,12 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
 
         mOrientations = isLandscapeDevice() ? ORIENTATIONS_LANDSCAPE_DEVICE : ORIENTATIONS_PORTRAIT_DEVICE;
 
+        if((ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)) {
+            mOrientation = PORTRAIT;
+        }else if(ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mOrientation = LANDSCAPE;
+        }
+        
         mOrientationEventListener = new OrientationEventListener(reactContext,
                 SensorManager.SENSOR_DELAY_NORMAL) {
             @Override
