@@ -10,6 +10,7 @@ import android.view.OrientationEventListener;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
+import android.content.res.Configuration;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
