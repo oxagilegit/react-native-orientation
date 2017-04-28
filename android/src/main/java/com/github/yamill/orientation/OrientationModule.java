@@ -89,6 +89,8 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
                 } else {
                     if(orientation == LANDSCAPE && specificOrientation.equals(mSpecificOrientation)){
                         unlockAllOrientations();
+                        mOrientation = orientation;
+                        mSpecificOrientation = specificOrientation;
                     }
                 }
 
