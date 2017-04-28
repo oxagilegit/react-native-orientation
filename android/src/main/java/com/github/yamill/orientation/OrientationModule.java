@@ -168,6 +168,7 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
             return;
         }
         mLocked = false;
+        mSpecificOrientation = null;
         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
