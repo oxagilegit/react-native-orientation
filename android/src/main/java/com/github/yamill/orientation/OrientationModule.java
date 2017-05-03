@@ -57,7 +57,7 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
                 SensorManager.SENSOR_DELAY_UI) {
             @Override
             public void onOrientationChanged(int orientationValue) {
-                if (!mHostActive || isDeviceOrientationLocked() || !ctx.hasActiveCatalystInstance())
+                if (isDeviceOrientationLocked() || !ctx.hasActiveCatalystInstance())
                     return;
                 
                 if (mOrientation != null && mSpecificOrientation != null) {
