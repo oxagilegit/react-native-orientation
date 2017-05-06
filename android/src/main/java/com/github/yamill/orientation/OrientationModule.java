@@ -21,6 +21,8 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
+import android.util.Log;
+
 public class OrientationModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
     final OrientationEventListener mOrientationEventListener;
     private String mOrientation;
@@ -50,8 +52,10 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
 
         if((ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)) {
             mOrientation = PORTRAIT;
+            mSpecificOrientation = PORTRAIT;
         }else if(ctx.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mOrientation = LANDSCAPE;
+            mSpecificOrientation = LANDSCAPE;
         }
         mOrientationEventListener = new OrientationEventListener(reactContext,
                 SensorManager.SENSOR_DELAY_UI) {
@@ -207,7 +211,13 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
     }
 
     private String getSpecificOrientationString(int orientationValue) {
-        if (orientationValue < 0) return PORTRAIT; // maybe need ORIENTATION_UNKNOWN
+
+
+
+        if (orientationValue < 0) {
+            return PORTRAIT; // maybe need ORIENTATION_UNKNOWN
+        }
+
         final int index = (int) ((float) orientationValue / 90.0 + 0.5) % 4;
         return mOrientations[index];
     }
