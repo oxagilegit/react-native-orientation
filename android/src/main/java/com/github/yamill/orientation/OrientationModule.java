@@ -91,7 +91,16 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
                         deviceEventEmitter.emit("specificOrientationDidChange", params);
                     }
                 } else {
-                    if(orientation == LANDSCAPE && specificOrientation.equals(mSpecificOrientation)){
+                    
+                    if (mOrientation != null && mSpecificOrientation != null) {
+                        final int halfSector = ACTIVE_SECTOR_SIZE / 2;
+                        if ((orientationValue % 90) > halfSector && (orientationValue % 90) < (90 - halfSector)) {
+                            return;
+                        }
+                    }
+                    final String lockedOrientation = getOrientationString(orientationValue);
+                    
+                    if(lockedOrientation == LANDSCAPE && specificOrientation.equals(mSpecificOrientation)){
                         unlockAllOrientations();
                         mOrientation = orientation;
                         mSpecificOrientation = specificOrientation;
